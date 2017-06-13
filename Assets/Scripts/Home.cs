@@ -5,73 +5,31 @@ using UnityEngine.UI;
 
 public class Home : MonoBehaviour {
 
-
+	GameObject go;
+	Service service;
 	public Text welcomeText;
 	public Slider xpValue;
-	public Button doWorkoutBtn;
-	public Button createWorkoutBtn;
-	public Button settingsBtn;
-	public Button journalBtn;
-	public Button aboutBtn;
-	public Button questsBtn;
 	public Button logoutBtn;
-	public Button closeSettings;
-	public GameObject settingsPanel;
-	int xp;
 
 	// Use this for initialization
 	void Start () {
-		
+		go = GameObject.Find("_Service");
+		service = (Service) go.GetComponent(typeof(Service));
 		welcomeText.text = "Welcome " + PlayerPrefs.GetString("username") + "!";
 		xpValue.value = PlayerPrefs.GetInt ("xp");		
-
-		doWorkoutBtn.onClick.AddListener(DoWorkout);
-		createWorkoutBtn.onClick.AddListener(CreateWorkout);
-		settingsBtn.onClick.AddListener(SettingsClicked);
-		journalBtn.onClick.AddListener(JournalClicked);
-		aboutBtn.onClick.AddListener (AboutClicked);
-		questsBtn.onClick.AddListener (QuestsClicked);
 		logoutBtn.onClick.AddListener (Logout);
-		closeSettings.onClick.AddListener (CloseSettings);
 	}
-	
+	public void GiveXP(){
+		service.GiveXP (20);
+	}
+	public void GainsGoblin(){
+		service.GainsGoblin (-15);
+	}
 	// Update is called once per frame
 	void Update () {
-	}
-
-	void DoWorkout(){
-		Debug.Log ("Do Workout");
-		xp += 1;
-		xpValue.value = xp;
-		PlayerPrefs.SetInt ("xp", xp);
-	}
-	void CreateWorkout(){
-		Debug.Log ("CreateWorkout");
-
-	}
-	void SettingsClicked(){
-		Debug.Log ("SettingsClicked");
-		settingsPanel.gameObject.SetActive (true);
-
-	}
-	void CloseSettings(){
-		settingsPanel.gameObject.SetActive (false);
-	}
-	void JournalClicked(){
-		Debug.Log ("JournalClicked");
-
-	}
-	void AboutClicked(){
-		Debug.Log ("AboutClicked");
-
-	}
-	void QuestsClicked(){
-		Debug.Log ("QuestsClicked");
-
+		xpValue.value = service.getXP ();
 	}
 	void Logout(){
-		GameObject go = GameObject.Find("_Service");
-		Service service = (Service) go.GetComponent(typeof(Service));
 		service.Logout ();
 	}
 

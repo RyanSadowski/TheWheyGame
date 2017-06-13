@@ -7,6 +7,7 @@ public class Service : MonoBehaviour {
 
 	public static Service instance = null;
 
+	int playerXP;
 
 
 	// Use this for initialization
@@ -16,14 +17,21 @@ public class Service : MonoBehaviour {
 		else if (instance != this)
 			Destroy (gameObject);
 
-
 	}
-	void Start(){
-		
-	}
-
 	public void Logout(){
+		Debug.Log ("logging out");
 		PlayerPrefs.DeleteAll ();
 		AutoFade.LoadLevel("_preload", .1f, .1f, Color.black);
+	}
+
+	public void GiveXP(int xp){
+		playerXP = PlayerPrefs.GetInt ("xp");
+		PlayerPrefs.SetInt ("xp", playerXP + xp);
+	}
+	public int getXP(){
+		return PlayerPrefs.GetInt ("xp");
+	}
+	public void GainsGoblin(int xp){
+		this.GiveXP (xp);
 	}
 }
