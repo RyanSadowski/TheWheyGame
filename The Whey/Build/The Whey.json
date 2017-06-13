@@ -1,0 +1,9 @@
+{
+"TOTAL_MEMORY": 268435456,
+"dataUrl": "The Whey.data.unityweb",
+"asmCodeUrl": "The Whey.asm.code.unityweb",
+"asmMemoryUrl": "The Whey.asm.memory.unityweb",
+"asmFrameworkUrl": "The Whey.asm.framework.unityweb",
+"splashScreenStyle": "Dark",
+"backgroundColor": "#222C36"
+}
