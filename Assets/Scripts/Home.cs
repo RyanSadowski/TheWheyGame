@@ -17,11 +17,13 @@ public class Home : MonoBehaviour {
 	public Button logoutBtn;
 	public Button closeSettings;
 	public GameObject settingsPanel;
+	int xp;
 
 	// Use this for initialization
 	void Start () {
+		
 		welcomeText.text = "Welcome " + PlayerPrefs.GetString("username") + "!";
-		xpValue.value = 34;//PlayerPrefs.GetInt ("xp");		
+		xpValue.value = PlayerPrefs.GetInt ("xp");		
 
 		doWorkoutBtn.onClick.AddListener(DoWorkout);
 		createWorkoutBtn.onClick.AddListener(CreateWorkout);
@@ -39,7 +41,9 @@ public class Home : MonoBehaviour {
 
 	void DoWorkout(){
 		Debug.Log ("Do Workout");
-		
+		xp += 1;
+		xpValue.value = xp;
+		PlayerPrefs.SetInt ("xp", xp);
 	}
 	void CreateWorkout(){
 		Debug.Log ("CreateWorkout");
