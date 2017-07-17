@@ -1,13 +1,13 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/User/registerForm.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/AutoFade.cs">
     <Files>
-      <File FileName="Assets/Scripts/Home.cs" Line="31" Column="1" />
-      <File FileName="Assets/Scripts/User/loginScript.cs" Line="53" Column="21" />
-      <File FileName="Assets/Scripts/User/registerForm.cs" Line="60" Column="11" />
-      <File FileName="Assets/Scripts/AutoFade.cs" Line="108" Column="30" />
-      <File FileName="Assets/Scripts/Service.cs" Line="27" Column="42" />
-      <File FileName="Assets/Scripts/preload.cs" Line="19" Column="29" />
+      <File FileName="Assets/Scripts/AutoFade.cs" Line="18" Column="16" />
+      <File FileName="Assets/Scripts/Home.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/User/loginScript.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/User/registerForm.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/Service.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/preload.cs" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

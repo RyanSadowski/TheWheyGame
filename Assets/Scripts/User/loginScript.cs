@@ -11,11 +11,13 @@ public class loginScript : MonoBehaviour
 
 	public Button button;
 	public Text usernameField;
+	public Text errorText;
+	public GameObject errorPanel;
 	public InputField passwordField;
 	private string username;
 	private string password;
 	//public string result;
-	public string url = "http://localhost:3000/user/auth";
+	public string url = "https://the-whey.herokuapp.com/user/auth";
 
 	// Use this for initialization
 	void Start ()
@@ -29,7 +31,6 @@ public class loginScript : MonoBehaviour
 
 		username = usernameField.text.ToString ();
 		password = passwordField.text.ToString ();
-		Debug.Log (passwordField.text.ToString ());
 
 		WWWForm form = new WWWForm ();
 		form.AddField ("username", username);
@@ -42,13 +43,21 @@ public class loginScript : MonoBehaviour
 	{
 		UnityWebRequest www = UnityWebRequest.Post ("https://the-whey.herokuapp.com/user/auth", form);
 		yield return www.Send ();
+		var N = JSON.Parse (www.downloadHandler.text);
 		if (!string.IsNullOrEmpty (www.error)) {
+			//This is caught for bad logins. 
 			print ("Error : " + www.error);
+			Debug.Log ("error");
+			errorPanel.gameObject.SetActive (true);
+			errorText.text = N ["message"].Value;
+			//TODO Place message on screen 
+			// probably enable a banner and change text based on the message
+			Debug.Log (N ["message"].Value);
+
 		} else {
 			Debug.Log ("logedin");
 			Debug.Log (www.downloadHandler.text);
 
-			var N = JSON.Parse (www.downloadHandler.text);
 			var success = N ["success"].Value;
 			if (success == "True") {
 			 
@@ -62,10 +71,7 @@ public class loginScript : MonoBehaviour
 					AutoFade.LoadLevel ("_preload", .1f, .1f, Color.black);
 				}
 
-			} else {
-				Debug.Log (N ["message"].Value);
-			
-			}
+			} 
 
 		}
 	}
