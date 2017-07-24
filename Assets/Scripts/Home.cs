@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using SimpleJSON;
 using UnityEngine.UI;
 
 public class Home : MonoBehaviour {
@@ -10,6 +11,10 @@ public class Home : MonoBehaviour {
 	public Text welcomeText;
 	public Slider xpValue;
 	public Button logoutBtn;
+	public Dropdown liftDropdown;
+	public List<string> options;
+	private int numLifts;
+
 
 	// Use this for initialization
 	void Start () {
@@ -18,6 +23,7 @@ public class Home : MonoBehaviour {
 		welcomeText.text = "Welcome " + PlayerPrefs.GetString("username") + "!";
 		xpValue.value = PlayerPrefs.GetInt ("xp");		
 		logoutBtn.onClick.AddListener (Logout);
+		service.GetLiftList ();
 	}
 	public void GiveXP(){
 		service.GiveXP (20);
@@ -33,4 +39,16 @@ public class Home : MonoBehaviour {
 		service.Logout ();
 	}
 
+	public void PopulateLifts(JSONNode data){
+		//liftDropdown.AddOptions;
+		Debug.Log(data["body"].Count + " lifts returned");
+		numLifts = data ["body"].Count;
+		for (int i = 0; i < numLifts; i++) {
+			options.Add (data ["body"] [i] ["name"]);
+		}
+//		options.Add (data ["body"] [0] ["name"]);
+//		options.Add (data ["body"] [1] ["name"]);
+		liftDropdown.AddOptions(options);
+			
+	}
 }

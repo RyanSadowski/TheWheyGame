@@ -14,13 +14,15 @@ public class registerForm : MonoBehaviour {
 	public Text firstNameField;
 	public Text lastNameField;
 	public Text emailField;
+	public Text errorText;
+	public GameObject errorPanel;
 	private string username;
 	private string password;
 	private string firstName;
 	private string lastName;
 	private string email;
 	//public string result;
-	public string url = "http://localhost:3000/user/setup";
+	public string url = "https://the-whey.herokuapp.com/user/setup";
 
 	// Use this for initialization
 	void Start () {
