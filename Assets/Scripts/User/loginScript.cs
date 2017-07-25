@@ -16,7 +16,6 @@ public class loginScript : MonoBehaviour
 	public InputField passwordField;
 	private string username;
 	private string password;
-	//public string result;
 	public string url = "https://the-whey.herokuapp.com/user/auth";
 
 	// Use this for initialization
@@ -28,14 +27,11 @@ public class loginScript : MonoBehaviour
 
 	void Submit ()
 	{
-
 		username = usernameField.text.ToString ();
 		password = passwordField.text.ToString ();
-
 		WWWForm form = new WWWForm ();
 		form.AddField ("username", username);
 		form.AddField ("password", password);
-
 		StartCoroutine ("Login", form);
 	}
 
@@ -57,22 +53,16 @@ public class loginScript : MonoBehaviour
 		} else {
 			Debug.Log ("logedin");
 			Debug.Log (www.downloadHandler.text);
-
 			var success = N ["success"].Value;
 			if (success == "True") {
-			 
 				var token = N ["token"].Value;
 				var username = N ["username"].Value;
-
 				PlayerPrefs.SetString ("token", token);
 				PlayerPrefs.SetString ("username", username);
-
 				if (PlayerPrefs.GetString ("username") != null && PlayerPrefs.GetString ("username") != "") {
 					AutoFade.LoadLevel ("_preload", .1f, .1f, Color.black);
 				}
-
 			} 
-
 		}
 	}
 }

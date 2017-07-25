@@ -22,8 +22,5 @@ public class preload : MonoBehaviour {
 			Debug.Log (" Loading Home");
 			AutoFade.LoadLevel("Home", .1f, .1f, Color.black);
 		}
-
-
-
 	}
 }

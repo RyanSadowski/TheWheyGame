@@ -15,7 +15,6 @@ public class Home : MonoBehaviour {
 	public List<string> options;
 	private int numLifts;
 
-
 	// Use this for initialization
 	void Start () {
 		go = GameObject.Find("_Service");
@@ -25,12 +24,15 @@ public class Home : MonoBehaviour {
 		logoutBtn.onClick.AddListener (Logout);
 		service.GetLiftList ();
 	}
+
 	public void GiveXP(){
 		service.GiveXP (20);
 	}
+
 	public void GainsGoblin(){
 		service.GainsGoblin (-15);
 	}
+
 	// Update is called once per frame
 	void Update () {
 		xpValue.value = service.getXP ();
@@ -40,14 +42,10 @@ public class Home : MonoBehaviour {
 	}
 
 	public void PopulateLifts(JSONNode data){
-		//liftDropdown.AddOptions;
-		Debug.Log(data["body"].Count + " lifts returned");
 		numLifts = data ["body"].Count;
 		for (int i = 0; i < numLifts; i++) {
 			options.Add (data ["body"] [i] ["name"]);
 		}
-//		options.Add (data ["body"] [0] ["name"]);
-//		options.Add (data ["body"] [1] ["name"]);
 		liftDropdown.AddOptions(options);
 			
 	}

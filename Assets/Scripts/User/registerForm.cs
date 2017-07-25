@@ -34,23 +34,19 @@ public class registerForm : MonoBehaviour {
 	void Update () {
 		
 	}
+
 	void Submit() {
-		
 		username = usernameField.text.ToString ();
 		password = passwordField.text.ToString ();
 		firstName = firstNameField.text.ToString ();
 		lastName = lastNameField.text.ToString ();
 		email = emailField.text.ToString ();
-
-	
-
 		WWWForm form = new WWWForm();
 		form.AddField("username", username);
 		form.AddField("password", password);
 		form.AddField("firstName", firstName);
 		form.AddField("lastName", lastName);
 		form.AddField("email", email);
-
 		StartCoroutine("CreateUser", form);
 	}
 
