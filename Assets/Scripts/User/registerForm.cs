@@ -47,6 +47,7 @@ public class registerForm : MonoBehaviour {
 		form.AddField("firstName", firstName);
 		form.AddField("lastName", lastName);
 		form.AddField("email", email);
+
 		StartCoroutine("CreateUser", form);
 	}
 

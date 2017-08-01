@@ -7,6 +7,7 @@ using UnityEngine.Networking;
 
 public class Service : MonoBehaviour {
 
+
 	public static Service instance = null;
 	GameObject go;
 	Home home;
@@ -40,22 +41,23 @@ public class Service : MonoBehaviour {
 		this.GiveXP (xp);
 	}
 
-	public void GetLiftList(){
+	public void GetHomeData(){
 		go = GameObject.Find("Canvas");
 		home = (Home) go.GetComponent(typeof(Home));
-		StartCoroutine ("GetLifts");
+		StartCoroutine ("GetHome");
 	}
 
 	private string GetToken(){
 		return PlayerPrefs.GetString ("token");
 	}
 		
-	IEnumerator GetLifts ()
+	IEnumerator GetHome ()
 	{
 		WWWForm form = new WWWForm ();
 		form.AddField ("token", GetToken());
-		UnityWebRequest www = UnityWebRequest.Post ("https://the-whey.herokuapp.com/lifts/all", form);
+		UnityWebRequest www = UnityWebRequest.Post ("https://the-whey.herokuapp.com/home", form);
 		yield return www.Send ();
+		//Debug.Log (www.downloadHandler.text);
 		var N = JSON.Parse (www.downloadHandler.text);
 		if (!string.IsNullOrEmpty (www.error)) {
 			print ("Error : " + www.error);
@@ -64,7 +66,7 @@ public class Service : MonoBehaviour {
 		} else {
 			var success = N ["success"].Value;
 			if (success == "True") {
-				home.PopulateLifts (N);
+				home.PopulateHome (N);
 			} 
 		}
 	}
